@@ -6,5 +6,7 @@ from django.urls import path
 
 from . import views
 urlpatterns = [
-    path('',views.show_form)
+    path('',views.show_form),
+    path('welcome',views.record_data)
+
 ]

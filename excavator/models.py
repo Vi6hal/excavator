@@ -5,7 +5,7 @@ class Tracker(models.Model):
     """
     Basic Model Structure store basic info of creator for data deletion
     TODO: Genrate a 6 digit sequence code for tracking id
-
+    
     """
     req_ip = models.CharField(max_length=30)
     origin_url = models.URLField(max_length=500)
