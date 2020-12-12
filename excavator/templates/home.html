@@ -1,0 +1,97 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hoe | IP Logger </title>
+  </head>
+  <body>
+    <nav>
+      <div class="nav-wrapper blue-grey darken-4">
+        <form class="form-globalsearch" method="post" action="https://duckduckgo.com/">
+          <div class="input-field">
+            <input id="searchIDorURL" class="blue-grey-text" type="search" minlength="6" name="query" required placeholder="Tracking Code | Link ?">
+            <label class="label-icon" for="search"><i class="material-icons pulse">search</i></label>
+            <i class="material-icons">close</i>
+          </div>
+          {% csrf_token %}
+
+        </form>
+      </div>
+    </nav>
+    <div id="body-wrapper">
+      <div class="row" style="margin-top:auto">
+        <div class="container">
+          <h5 class="center-left blue-grey-text lighten-4">How to Use?</h5>
+          <h6>Type in the tracking code to check existing loggers or enter a url to create a new logger</h6>
+        </div>
+      </div>
+      <div class="row" style="margin-top:auto">
+        <div class="container result_date hide">
+          <div class="card horizontal">
+            <div class="card-stacked">
+              <div class="card-content">
+                <table class="tracker_info">
+                </table>
+                <ul class="collapsible">
+                <li>
+                  <div class="collapsible-header">
+                        <i class="material-icons tooltipped" data-position="top" data-tooltip="Show Logs">reorder</i><span>Results</span>
+                  </div>
+                  <div class="collapsible-body">
+                    <table class="table table-bordered table-striped table-hover">
+                      <thead>
+                        <tr>
+                          <th>Date/Time</th>
+                          <th>IP Address</th>
+                          <th>Country
+                             <a class="fa fa-question-circle tooltipped" data-position="top" data-tooltip="Country is an estimate"></a>
+                          </th>
+                            <th>User Agent</th>
+                            <th>Referring URL</th>
+                            <th>Host Name</th>
+                            <th>ISP</th>
+                            <th>More</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                      </table>
+                    </div>
+                  </li></ul>
+                </div>
+                <div class="card-action">
+                   <div class="right">
+                      <i class="material-icons tooltipped" data-position="top" data-tooltip="Refresh Logs">refresh</i>
+                        </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top:auto">
+          <div class="container">
+            <h3 class="header blue-grey-text accent-3">About Hoe,</h3>
+            <h4 class="blue-grey-text lighten-2"><p>Open Source version of the <a class="green-text" href="https://grabify.link/" target="_blank">Grabify</a> ip-logger & url-shortner!<br><span>
+            completely re-written using</span>
+            <a class="green-text" href="https://www.djangoproject.com/" target="_blank">Django</a> & <a class="green-text" href="https://jquery.com/" target="_blank">jQuery</a>
+          </p></h4>
+          <p>
+            If you would like to contribute, please checkout the github repo or if you can help with hosting this on heroku please contact me on discord @<span class="green-text">!Noah#8661</span>
+          </p>
+          <a class="blue-grey github-btn darken-4 waves-effect waves-light btn-large" href="https://github.com/n0tNoah/excavator"><i class="right fa fa-github"></i>Github</a>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="{% static 'js/home.js' %}"></script>
+
+  </div>
+</body>
+</html>
