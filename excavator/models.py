@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 from django import utils
+import uuid
+
 class Tracker(models.Model):
     """
     Basic Model Structure store basic info of creator for data deletion
@@ -8,10 +10,11 @@ class Tracker(models.Model):
     
     """
     req_ip = models.CharField(max_length=30)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     origin_url = models.URLField(max_length=500)
-    request_tracking_code = models.CharField(max_length=30)
-    request_managing_code = models.CharField(max_length=30)
-    tracker_url = models.URLField(max_length=500)
+    request_tracking_code = models.CharField(max_length=30,blank=True)
+    request_managing_code = models.CharField(max_length=30,blank=True)
+    tracker_url = models.URLField(max_length=500,blank=True)
 
 
 

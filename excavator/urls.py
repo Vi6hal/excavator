@@ -6,7 +6,10 @@ from django.urls import path
 
 from . import views
 urlpatterns = [
-    path('',views.show_form),
-    path('welcome',views.record_data)
-
+    path('',views.home),
+    path('welcome',views.record_data),
+    path('create',views.create_logger),
+    path('load',views.load_logger),
+    path('load_results',views.load_results),
+    path('<str:tckcode>',views.show_form)
 ]

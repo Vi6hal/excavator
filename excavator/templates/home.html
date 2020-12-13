@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Hoe | IP Logger </title>
+    <title>Xkavator | IP Logger </title>
   </head>
   <body>
     <nav>
@@ -44,7 +44,7 @@
                         <i class="material-icons tooltipped" data-position="top" data-tooltip="Show Logs">reorder</i><span>Results</span>
                   </div>
                   <div class="collapsible-body">
-                    <table class="table table-bordered table-striped table-hover">
+                    <table class="table table-bordered table-striped table-hover" >
                       <thead>
                         <tr>
                           <th>Date/Time</th>
@@ -59,7 +59,7 @@
                             <th>More</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="result_records">
                         </tbody>
                       </table>
                     </div>
@@ -67,8 +67,11 @@
                 </div>
                 <div class="card-action">
                    <div class="right">
+                     <a id="refresh_logs">
                       <i class="material-icons tooltipped" data-position="top" data-tooltip="Refresh Logs">refresh</i>
-                        </div>
+                    </a>  
+                    </div>
+                      
                 </div>
               </div>
             </div>
@@ -76,7 +79,7 @@
         </div>
         <div class="row" style="margin-top:auto">
           <div class="container">
-            <h3 class="header blue-grey-text accent-3">About Hoe,</h3>
+            <h3 class="header blue-grey-text accent-3">About Xkavator,</h3>
             <h4 class="blue-grey-text lighten-2"><p>Open Source version of the <a class="green-text" href="https://grabify.link/" target="_blank">Grabify</a> ip-logger & url-shortner!<br><span>
             completely re-written using</span>
             <a class="green-text" href="https://www.djangoproject.com/" target="_blank">Django</a> & <a class="green-text" href="https://jquery.com/" target="_blank">jQuery</a>
