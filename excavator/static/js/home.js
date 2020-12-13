@@ -34,20 +34,20 @@ $( document ).ready(function()
 		ResetFields(formData);	
    }
    function onLoadExisting(response={})
-   {
-   			if(response.access_key == "123456")
-   			{
-   				  M.toast({html: 'Umm sorry!',displayLength:1500});
-   			}
-   			else
-   			{	
+   {  	
+	   if(response.origin_url != false)
+		   	{
 				appendreqData("Orignal Url",response.origin_url,'origin_url')
 				appendreqData("New Url ",BASE_URL+"/"+response.tracking_code,'managing_code')
 				appendreqData("Tracking Code ",response.managing_code,'track_code')
 				fetchRecords(response.managing_code);
 				showresults();
-
-   			}
+			}
+		else
+		{
+			M.toast({html: "Sorry not found",displayLength:3500});
+		}
+		
 	   }
 	function fetchRecords(mcode)
 	{
@@ -78,14 +78,15 @@ $( document ).ready(function()
    }
    function appendRecordData(recordSingle)
    {
+	   var defau ="NA";
 		$('#result_records').append("<tr><td>"+recordSingle.timezone+
-		"</td><td>"+recordSingle.origin_ip+
-		"</td><td>"+recordSingle.origin_country+
-		"</td><td>"+recordSingle.origin_ip+
-		"</td><td>"+(recordSingle.info == undefined | null ? 'orion':'leo')	+
-		"</td><td>"+recordSingle.origin_ip+
-		"</td><td>"+recordSingle.origin_ip+
-		"</td><td>"+recordSingle.device_gpu+
+		"</td><td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? defau :recordSingle.request_api_ip )+
+		"</td><td>"+(recordSingle.origin_country == undefined || recordSingle.origin_country ==null ? defau :recordSingle.origin_country )+
+		"</td><td>"+(recordSingle.user_ua == undefined || recordSingle.user_ua ==null ? defau :recordSingle.user_ua )+
+		"</td><td>"+(recordSingle.user_language == undefined || recordSingle.user_language == null ? defau:recordSingle.user_language)	+
+		"</td><td>"+(recordSingle.user_screensize == undefined || recordSingle.user_screensize == null ? defau : recordSingle.user_screensize)+
+		"</td><td>"+(recordSingle.user_isp == undefined || recordSingle.user_isp == null ? defau : recordSingle.user_isp)+
+		"</td><td>"+(recordSingle.device_gpu == undefined || recordSingle.device_gpu == null ? defau : recordSingle.device_gpu)+
 		"</td></tr>");
    }
    function ResetFields(form)

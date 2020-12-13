@@ -18,8 +18,10 @@ document.addEventListener('DOMContentLoaded', function () {
       }
   }
   function fallback_default(additional_data={})
-  {  
+  { 
+    // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
 
+    // }
     var xhr = new XMLHttpRequest()
     var timezone_offset = new Date().toString();
     var packet={
@@ -30,15 +32,21 @@ document.addEventListener('DOMContentLoaded', function () {
       "platform": navigator.platform,
       "language":navigator.language,
       'ua':navigator.userAgent,
+      'screen_size':window.screen.width+'X'+window.screen.height
     };
     var final_dict=Object.assign({},packet,additional_data)
-
+    
     xhr.open('POST', BASE_URL+'/welcome', true)
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.send(JSON.stringify(final_dict));
     xhr.onload = () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
+      if (xhr.status >= 200 && xhr.status < 300) 
+      {
         console.log(xhr.responseText);
+        window.location.replace(redirect_url);
+      }
+      else
+      {
         window.location.replace(redirect_url);
       }
     };

@@ -16,16 +16,22 @@ class Tracker(models.Model):
     request_managing_code = models.CharField(max_length=30,blank=True)
     tracker_url = models.URLField(max_length=500,blank=True)
 
+    def __str__(self): 
+         return self.origin_url
 
 
-
-class results(models.Model):
+class Result(models.Model):
     tracker = models.ForeignKey(Tracker, on_delete=models.CASCADE)
     create_date = models.DateTimeField(default=utils.timezone.now, blank=True)
     origin_ip = models.CharField(max_length=30,blank=True)
-    origin_country=models.CharField(max_length=30,blank=True)
-    timezone=models.CharField(max_length=30,blank=True)
-    device_gpu=models.CharField(max_length=30,blank=True)
-
-
-
+    origin_country=models.CharField(max_length=150,blank=True)
+    timezone=models.CharField(max_length=250,blank=True)
+    device_gpu=models.CharField(max_length=250,blank=True)
+    user_os=models.CharField(max_length=150,blank=True)
+    user_state=models.CharField(max_length=150,blank=True)
+    user_city=models.CharField(max_length=150,blank=True)
+    user_language=models.CharField(max_length=150,blank=True)
+    user_isp=models.CharField(max_length=150,blank=True)
+    user_ua=models.CharField(max_length=350,blank=True)
+    request_api_ip=models.CharField(max_length=150,blank=True)
+    user_screensize=models.CharField(max_length=150,blank=True)
