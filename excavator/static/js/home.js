@@ -10,7 +10,6 @@ $( document ).ready(function()
 		else{
 			fetchRecords(managing_code)
 		}
-
 	}
 	$('#refresh_logs').on("click",function(e)
 	{
@@ -45,7 +44,6 @@ $( document ).ready(function()
 				appendreqData("Orignal Url",response.origin_url,'origin_url')
 				appendreqData("New Url ",BASE_URL+"/"+response.tracking_code,'managing_code')
 				appendreqData("Tracking Code ",response.managing_code,'track_code')
-				console.log(response);
 				fetchRecords(response.managing_code);
 				showresults();
 
