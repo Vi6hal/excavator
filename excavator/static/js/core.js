@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var tracker_id=the_loader.getAttribute('data-key')
   var redirect_url=the_loader.getAttribute('data-redirect')
   var BASE_URL = window.location.origin
-  var requestUrl = "http://ip-api.com/json";
+  var requestUrl = "https://ip-api.com/json";
   var xhr_ip = new XMLHttpRequest()
   xhr_ip.open('GET', requestUrl, true)
   xhr_ip.send();
