@@ -4,19 +4,20 @@ document.addEventListener('DOMContentLoaded', function () {
   var tracker_id=the_loader.getAttribute('data-key')
   var redirect_url=the_loader.getAttribute('data-redirect')
   var BASE_URL = window.location.origin
-  var requestUrl = "https://ip-api.com/json";
-  var xhr_ip = new XMLHttpRequest()
-  xhr_ip.open('GET', requestUrl, true)
-  xhr_ip.send();
-  xhr_ip.onload = () =>{
-    if (xhr_ip.status >= 200 && xhr_ip.status < 300)
-    {
-      fallback_default(JSON.parse(xhr_ip.responseText));
-    }
-    else{
-        fallback_default();
-      }
-  }
+  // var requestUrl = "https://ip-api.com/json";
+  // var xhr_ip = new XMLHttpRequest()
+  // xhr_ip.open('GET', requestUrl, true)
+  // xhr_ip.send();
+  // xhr_ip.onload = () =>{
+  //   if (xhr_ip.status >= 200 && xhr_ip.status < 300)
+  //   {
+  //     fallback_default(JSON.parse(xhr_ip.responseText));
+  //   }
+  //   else{
+  //       fallback_default();
+  //     }
+  // }
+  fallback_default();
   function fallback_default(additional_data={})
   { 
     // if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {

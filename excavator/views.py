@@ -29,8 +29,10 @@ def home(request):
 def record_data(request):
     if request.method == 'POST':
         received_json_data=json.loads(request.body)
+
         try:
             ip_address = request.META.get('HTTP_X_FORWARDED_FOR', False) or request.META.get('REMOTE_ADDR')
+            print(ip_address)
             curr=Tracker.objects.get(request_tracking_code=received_json_data['tracker'])
             tracker_id=Result.objects.create(tracker=curr,
             origin_ip=ip_address,
