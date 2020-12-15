@@ -80,7 +80,7 @@ $( document ).ready(function()
    {
 	   var defau ="NA";
 		$('#result_records').append("<tr><td>"+recordSingle.timezone+
-		"</td><td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? defau :recordSingle.request_api_ip )+
+		"</td><td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+
 		"</td><td>"+(recordSingle.origin_country == undefined || recordSingle.origin_country ==null ? defau :recordSingle.origin_country )+
 		"</td><td>"+(recordSingle.user_ua == undefined || recordSingle.user_ua ==null ? defau :recordSingle.user_ua )+
 		"</td><td>"+(recordSingle.user_language == undefined || recordSingle.user_language == null ? defau:recordSingle.user_language)	+
