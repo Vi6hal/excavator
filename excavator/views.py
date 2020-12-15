@@ -6,9 +6,8 @@ from django.core.exceptions import ObjectDoesNotExist
 import json
 from .models import Tracker, Result
 import uuid
-
-# TODO: add views based on the TODO url's , create form handler for tracker, create view for tracker (show results) create a json-based api to interact with JS data 
-
+from .create_logger_api import create_logger     
+from .ip_info_api import fetch_ipdata
 def show_form(request,tckcode):
     data={}
     try:
@@ -28,10 +27,10 @@ def home(request):
 @csrf_exempt
 def record_data(request):
     if request.method == 'POST':
+        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', False) or request.META.get('REMOTE_ADDR')
         received_json_data=json.loads(request.body)
-
         try:
-            ip_address = request.META.get('HTTP_X_FORWARDED_FOR', False) or request.META.get('REMOTE_ADDR')
+            received_json_data.update(fetch_ipdata(ip_address))
             curr=Tracker.objects.get(request_tracking_code=received_json_data['tracker'])
             tracker_id=Result.objects.create(tracker=curr,
             origin_ip=ip_address,
@@ -48,22 +47,13 @@ def record_data(request):
             user_screensize=received_json_data.get('screen_size')
             )
         except ObjectDoesNotExist:
+            return JsonResponse({"status":"not ok"})
             pass
 
 
         return JsonResponse({"status":"ok"})
 
-def create_logger(request):
-    if request.method == 'POST':
-        ip_address = request.META.get('HTTP_X_FORWARDED_FOR', False) or request.META.get('REMOTE_ADDR')
-        url_req=request.POST.get('access_key',False)
-        curr=Tracker.objects.create(req_ip=ip_address,origin_url=url_req,request_tracking_code=uuid.uuid4().hex[:6].upper(),request_managing_code=uuid.uuid4().hex[:6].upper())
-        return JsonResponse(
-            {
-                'managing_code':curr.request_managing_code,
-                'origin_url':curr.origin_url,
-                'tracking_code':curr.request_tracking_code,
-            })
+
 
 def load_logger(request):
     if request.method == 'POST':
