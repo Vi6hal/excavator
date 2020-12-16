@@ -67,6 +67,7 @@
                   </li></ul>
                 </div>
                 <div class="card-action">
+                  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
                    <div class="right">
                      <a id="refresh_logs">
                       <i class="material-icons tooltipped" data-position="top" data-tooltip="Refresh Logs">refresh</i>
@@ -95,7 +96,15 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="{% static 'js/home.js' %}"></script>
-
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
   </div>
 </body>
 </html>

@@ -1,4 +1,6 @@
 from django.http import JsonResponse
+from .models import Tracker, Result
+import uuid
 
 def create_logger(request):
     if request.method == 'POST':
