@@ -35,3 +35,9 @@ class Result(models.Model):
     user_ua=models.CharField(max_length=350,blank=True,null=True)
     request_api_ip=models.CharField(max_length=150,blank=True,null=True)
     user_screensize=models.CharField(max_length=150,blank=True,null=True)
+    device_type=models.CharField(max_length=150,blank=True,null=True)
+    os_info=models.CharField(max_length=150,blank=True,null=True)
+    device_info=models.CharField(max_length=150,blank=True,null=True)
+    touch_support=models.CharField(max_length=50,blank=True,null=True)
+    browser_info=models.CharField(max_length=150,blank=True,null=True)
+    

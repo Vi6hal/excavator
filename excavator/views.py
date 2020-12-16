@@ -5,9 +5,10 @@ from django.views.decorators.csrf import csrf_exempt
 from django.core.exceptions import ObjectDoesNotExist
 import json
 from .models import Tracker, Result
-import uuid
 from .create_logger_api import create_logger     
-from .ip_info_api import fetch_ipdata
+from .additional_infoapi import fetch_ipdata
+from .additional_infoapi import fetch_uadata
+
 def show_form(request,tckcode):
     data={}
     try:
@@ -31,6 +32,7 @@ def record_data(request):
         received_json_data=json.loads(request.body)
         try:
             received_json_data.update(fetch_ipdata(ip_address))
+            received_json_data.update(fetch_uadata(received_json_data.get('ua')))
             curr=Tracker.objects.get(request_tracking_code=received_json_data['tracker'])
             tracker_id=Result.objects.create(tracker=curr,
             origin_ip=ip_address,
@@ -44,7 +46,12 @@ def record_data(request):
             user_isp=received_json_data.get('isp'),
             user_ua=received_json_data.get('ua'),
             request_api_ip=received_json_data.get('query'),
-            user_screensize=received_json_data.get('screen_size')
+            user_screensize=received_json_data.get('screen_size'),
+            device_type=received_json_data.get('device_type'),
+            os_info=received_json_data.get('os_info'),
+            device_info=received_json_data.get('device_info'),
+            touch_support=received_json_data.get('touch_support'),
+            browser_info=received_json_data.get('browser_info'),
             )
         except ObjectDoesNotExist:
             return JsonResponse({"status":"not ok"})
@@ -52,8 +59,6 @@ def record_data(request):
 
 
         return JsonResponse({"status":"ok"})
-
-
 
 def load_logger(request):
     if request.method == 'POST':
@@ -91,14 +96,12 @@ def load_results(request):
                 dict_single["user_language"]=data.user_language
                 dict_single["user_screensize"]=data.user_screensize
                 dict_single["device_gpu"]=data.device_gpu
+                dict_single["device_info"]=data.device_info
+                dict_single["touch_support"]=data.touch_support
+                dict_single["browser_info"]=data.browser_info
+                dict_single["device_type"]=data.device_type
+                dict_single["os_info"]=data.os_info
                 result_dict.append(dict_single)
-            
-            print(result_dict)
             return JsonResponse({'data':result_dict})
         except ObjectDoesNotExist:
-            return JsonResponse({
-                    'managing_code':False,
-                    'origin_url':False,
-                    'tracking_code':False,
-                })
-
+            return JsonResponse({})

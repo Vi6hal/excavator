@@ -1,6 +1,10 @@
 $( document ).ready(function() 
 {
 	M.AutoInit();
+
+
+	// 10EE80
+	// $('.modal').open();
 	var BASE_URL = $(location).attr("origin");
 	var csrfmiddlewaretoken=$("input[name=csrfmiddlewaretoken]").val()
 	function async_updateinfo()
@@ -15,6 +19,48 @@ $( document ).ready(function()
 	{
 		async_updateinfo();
 	});
+	$('#result_records').on("click",'.showmore',function(self)
+	{
+		var rec_data=this.dataset;
+		var all_keys=Object.keys(rec_data);
+		var instance = M.Modal.getInstance($('#modalShowIP'));
+		append_string=""
+		all_keys.forEach(function(key)
+		{
+		 append_string=append_string+
+		 "<li class='collection-item'>"+
+		 "<span><strong>"+key.replace('_'," ").toUpperCase()+"</strong>:</span>"+
+		 "<span class='secondary-content'>"+rec_data[key]+"</span>"+
+		 "</li>"
+		});
+		$('#modalResultFooter').html(append_string);
+		// $('#modalResultFooter').html(""+
+		// 	"<li class='collection-item'>"+
+		// 	"<span><strong>Timezone</strong>:</span>"+
+		// 	"<span class='secondary-content'>"+this.dataset.timezone+"</span>"+
+		// 	"</li>"
+		// 	+
+		// 	"<li class='collection-item'>"+
+		// 	"<span><strong>IP Address</strong>:</span>"+
+		// 	"<span class='secondary-content'>"+this.dataset.request_api_ip+"</span>"+
+		// 	"</li>"
+		// 	+
+		// 	"<li class='collection-item'>"+
+		// 	"<span><strong>Origin Country</strong>:</span>"+
+		// 	"<span class='secondary-content'>"+this.dataset.origin_country+"</span>"+
+		// 	"</li>"
+		// 	+
+		// 	"<li class='collection-item'>"+
+		// 	"<span><strong>Device GPU</strong>:</span>"+
+		// 	"<span class='secondary-content'>"+this.dataset.origin_country+"</span>"+
+		// 	"</li>"
+		// +"")
+		instance.open();
+	});
+	function showLowerSlide()
+	{
+
+	}
    function formPOSTHandler(formData)
    {
 		var search_field= $('#searchIDorURL')
@@ -78,16 +124,20 @@ $( document ).ready(function()
    }
    function appendRecordData(recordSingle)
    {
-	   var defau ="NA";
-		$('#result_records').append("<tr><td>"+recordSingle.timezone+
-		"</td><td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+
-		"</td><td>"+(recordSingle.origin_country == undefined || recordSingle.origin_country ==null ? defau :recordSingle.origin_country )+
-		"</td><td>"+(recordSingle.user_ua == undefined || recordSingle.user_ua ==null ? defau :recordSingle.user_ua )+
-		"</td><td>"+(recordSingle.user_language == undefined || recordSingle.user_language == null ? defau:recordSingle.user_language)	+
-		"</td><td>"+(recordSingle.user_screensize == undefined || recordSingle.user_screensize == null ? defau : recordSingle.user_screensize)+
-		"</td><td>"+(recordSingle.user_isp == undefined || recordSingle.user_isp == null ? defau : recordSingle.user_isp)+
-		"</td><td>"+(recordSingle.device_gpu == undefined || recordSingle.device_gpu == null ? defau : recordSingle.device_gpu)+
-		"</td></tr>");
+	   all_keys=(Object.keys(recordSingle))
+	   append_string=""
+		var defau ="NA";
+
+	   all_keys.forEach(function(key)
+	   {
+		append_string=append_string+" data-"+key+"='"+(recordSingle[key] == undefined || recordSingle[key] ==null ? defau :recordSingle[key] )+"'"
+	   });
+	   console.log(append_string)
+	   $('#result_records').append(
+		"<tr><td>"+recordSingle.timezone+"</td>"+
+		"<td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+"</td>"+
+		"<td class='showmore' "+append_string+"><i class='material-icons'>send</i>"+"</td></tr>"
+	);
    }
    function ResetFields(form)
    {
