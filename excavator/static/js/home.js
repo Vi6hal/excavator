@@ -29,32 +29,11 @@ $( document ).ready(function()
 		{
 		 append_string=append_string+
 		 "<li class='collection-item'>"+
-		 "<span><strong>"+key.replace('_'," ").toUpperCase()+"</strong>:</span>"+
-		 "<span class='secondary-content'>"+rec_data[key]+"</span>"+
+		 "<span><strong>"+key.replace('_'," ").toUpperCase()+"</strong> :</span>"+
+		 "<span class=''>"+rec_data[key]+"</span>"+
 		 "</li>"
 		});
 		$('#modalResultFooter').html(append_string);
-		// $('#modalResultFooter').html(""+
-		// 	"<li class='collection-item'>"+
-		// 	"<span><strong>Timezone</strong>:</span>"+
-		// 	"<span class='secondary-content'>"+this.dataset.timezone+"</span>"+
-		// 	"</li>"
-		// 	+
-		// 	"<li class='collection-item'>"+
-		// 	"<span><strong>IP Address</strong>:</span>"+
-		// 	"<span class='secondary-content'>"+this.dataset.request_api_ip+"</span>"+
-		// 	"</li>"
-		// 	+
-		// 	"<li class='collection-item'>"+
-		// 	"<span><strong>Origin Country</strong>:</span>"+
-		// 	"<span class='secondary-content'>"+this.dataset.origin_country+"</span>"+
-		// 	"</li>"
-		// 	+
-		// 	"<li class='collection-item'>"+
-		// 	"<span><strong>Device GPU</strong>:</span>"+
-		// 	"<span class='secondary-content'>"+this.dataset.origin_country+"</span>"+
-		// 	"</li>"
-		// +"")
 		instance.open();
 	});
 	function showLowerSlide()
@@ -134,9 +113,11 @@ $( document ).ready(function()
 	   });
 	   console.log(append_string)
 	   $('#result_records').append(
-		"<tr><td>"+recordSingle.timezone+"</td>"+
+		"<tr>"
+		+"<td>"+recordSingle.device_info+"</td>"+
 		"<td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+"</td>"+
-		"<td class='showmore' "+append_string+"><i class='material-icons'>send</i>"+"</td></tr>"
+		"<td class='showmore' "+append_string+"><i class='material-icons'>send</i>"+"</td>"
+		+"</tr>"
 	);
    }
    function ResetFields(form)
