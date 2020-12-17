@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
   var redirect_url=the_loader.getAttribute('data-redirect')
   var BASE_URL = window.location.origin
   fallback_default();
-  // since 15122020
   function fallback_default(additional_data={})
   { 
     var xhr = new XMLHttpRequest()

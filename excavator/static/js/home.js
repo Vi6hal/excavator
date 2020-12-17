@@ -130,7 +130,8 @@ $( document ).ready(function()
    }
    function ResetFields(form)
    {
-		search_field.attr('type',"search")
+		var search_field= $('#searchIDorURL');
+		search_field.attr('type',"search");
 		search_field.removeClass("holup");
 		$("#searchiconToken").show();
 	   	form.reset();return;
