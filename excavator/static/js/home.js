@@ -84,7 +84,7 @@ $( document ).ready(function()
 	}
 	function updateRecords(response={})
 	{
-		$('#result_records tr').remove();
+		$('#result_records li').remove();
 		$.each(response.data, function(key,value) {
 			appendRecordData(value)
 		});
@@ -111,13 +111,21 @@ $( document ).ready(function()
 	   {
 		append_string=append_string+" data-"+key+"='"+(recordSingle[key] == undefined || recordSingle[key] ==null ? defau :recordSingle[key] )+"'"
 	   });
-	   console.log(append_string)
-	   $('#result_records').append(
-		"<tr>"
-		+"<td>"+recordSingle.device_info+"</td>"+
-		"<td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+"</td>"+
-		"<td class='showmore' "+append_string+"><i class='material-icons'>send</i>"+"</td>"
-		+"</tr>"
+
+	//    $('#result_records').append(
+		
+	// 	"<tr>"
+	// 	+"<td>"+recordSingle.device_info+"</td>"+
+	// 	"<td>"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+"</td>"+
+	// 	"<td class='showmore' "+append_string+"><i class='material-icons'>send</i>"+"</td>"
+	// 	+"</tr>"
+	// );
+  $('#result_records').append(
+	"<li class='collection-item'>"+
+	"<i class='showmore secondary-content material-icons'"+append_string+">send</i>"+
+	"<strong>Device</strong>:"+recordSingle.device_info+"<br>"+
+	"<span> <strong> IP</strong>:"+(recordSingle.request_api_ip == undefined || recordSingle.request_api_ip ==null ? recordSingle.origin_ip :recordSingle.request_api_ip )+"</span><br>"+
+	"</li>"
 	);
    }
    function ResetFields(form)
@@ -186,6 +194,23 @@ $( document ).ready(function()
 		e.preventDefault();
 		formPOSTHandler(this); return;
 	}
+});
+$("#searchIDorURL").on("input", function()
+{
+		var search_field= $('#searchIDorURL')
+		if(search_field.val().length > 6 && search_field.attr('type')=='search')
+		{
+			console.log("convert to url");
+			search_field.attr('type',"url")
+			$("#searchiconToken").hide();
+		}
+		else if(search_field.val().length <= 6 && search_field.attr('type') != 'search')
+		{
+			console.log(search_field.val().length);
+			search_field.attr('type',"search")
+			$("#searchiconToken").show();
+
+		}
 });
 	
  });

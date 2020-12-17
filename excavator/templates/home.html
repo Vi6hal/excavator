@@ -20,7 +20,7 @@
         <div class="input-field">
           <input id="searchIDorURL" class="blue-grey-text" type="search" minlength="6" name="query" required
             placeholder="Tracking Code | Link ?">
-          <label class="label-icon" for="search"><i class="material-icons pulse">search</i></label>
+          <label class="label-icon" for="search"><i id="searchiconToken" class="material-icons pulse">search</i></label>
           <i class="material-icons">close</i>
         </div>
         {% csrf_token %}
@@ -49,17 +49,9 @@
                       data-tooltip="Show Logs">reorder</i><span>Results</span>
                   </div>
                   <div class="collapsible-body">
-                    <table class="table table-bordered table-striped table-hover">
-                      <thead>
-                        <tr>
-                          <th>Device</th>
-                          <th>IP</th>
-                          <th>more</th>
-                        </tr>
-                      </thead>
-                      <tbody id="result_records">
-                      </tbody>
-                    </table>
+                    <ul class="collection" id="result_records">
+                     
+                    </ul>
                   </div>
                 </li>
                 </ul>
@@ -80,9 +72,8 @@
       <div class="container">
         <h3 class="header blue-grey-text accent-3">About Xkavator,</h3>
         <h4 class="blue-grey-text lighten-2">
-          <p>Open Source version of the <a class="green-text" href="https://grabify.link/" target="_blank">Grabify</a>
-            ip-logger & url-shortner!<br><span>
-              completely re-written using</span>
+          <p>Device Analytics tool | Url Shortner with client metadata logging
+            written using</span>
             <a class="green-text" href="https://www.djangoproject.com/" target="_blank">Django</a> & <a
               class="green-text" href="https://jquery.com/" target="_blank">jQuery</a>
           </p>
