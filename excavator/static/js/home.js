@@ -130,7 +130,10 @@ $( document ).ready(function()
    }
    function ResetFields(form)
    {
-   	form.reset();return;
+		search_field.attr('type',"search")
+		search_field.removeClass("holup");
+		$("#searchiconToken").show();
+	   	form.reset();return;
    }
    function DoAjax(data,url,method,callback=false,message='loading')
    {
@@ -201,13 +204,15 @@ $("#searchIDorURL").on("input", function()
 		if(search_field.val().length > 6 && search_field.attr('type')=='search')
 		{
 			console.log("convert to url");
-			search_field.attr('type',"url")
+			search_field.attr('type',"text")
+			search_field.addClass("holup");
 			$("#searchiconToken").hide();
 		}
 		else if(search_field.val().length <= 6 && search_field.attr('type') != 'search')
 		{
 			console.log(search_field.val().length);
 			search_field.attr('type',"search")
+			search_field.removeClass("holup");
 			$("#searchiconToken").show();
 
 		}
