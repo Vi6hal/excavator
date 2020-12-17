@@ -204,7 +204,7 @@ $("#searchIDorURL").on("input", function()
 		if(search_field.val().length > 6 && search_field.attr('type')=='search')
 		{
 			console.log("convert to url");
-			search_field.attr('type',"text")
+			search_field.attr('type',"url")
 			search_field.addClass("holup");
 			$("#searchiconToken").hide();
 		}
