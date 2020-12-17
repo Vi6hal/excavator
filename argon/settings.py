@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'excavator'
 ]
 MIDDLEWARE = [
-    'django.middleware.gzip.GZipMiddleware'
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
